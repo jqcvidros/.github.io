@@ -17,6 +17,11 @@
         color: white;
         text-align: center;
         overflow-x: hidden;
+        transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    /* 🎨 LIGHT MODE (padrão) */
+    body {
         background: linear-gradient(130deg, #0b70a8, #00649c, #0080c0);
         background-size: 300% 300%;
         animation: gradientMove 12s ease infinite;
@@ -26,6 +31,23 @@
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
+    }
+
+    /* 🌙 DARK MODE AUTOMÁTICO */
+    @media (prefers-color-scheme: dark) {
+        body {
+            background: #000000;
+            background-size: 100% 100%;
+        }
+
+        .link-btn {
+            background: rgba(255,255,255,0.10) !important;
+            box-shadow: 0 4px 14px rgba(255,255,255,0.18) !important;
+        }
+
+        .link-btn:hover {
+            background: rgba(255,255,255,0.20) !important;
+        }
     }
 
     .container {
@@ -121,8 +143,13 @@
 
     <div class="social-row">
         <a href="https://www.instagram.com/jqcvidros" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
-        <a href="https://wa.me/5575991454807" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
-        <a href="https://www.youtube.com/@jqcvidros" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png"></a>
+        <a href="https://wa.me/5575981358280" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
+
+        <!-- Novo ícone oficial do YouTube -->
+        <a href="https://www.youtube.com/@jqcvidros" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2024.svg">
+        </a>
+
         <a href="https://www.facebook.com/jqcvidros" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"></a>
     </div>
 
@@ -138,9 +165,9 @@
         Instagram
     </a>
 
-    <!-- YouTube -->
+    <!-- YouTube novo -->
     <a class="link-btn" href="https://www.youtube.com/@jqcvidros" target="_blank">
-        <img class="small-icon" src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png">
+        <img class="small-icon" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg">
         YouTube
     </a>
 
@@ -150,8 +177,8 @@
         Facebook
     </a>
 
-    <!-- Google Maps → ícone corrigido -->
-    <a class="link-btn" href="https://maps.app.goo.gl/k5mzo4taNLGy27gv7" target="_blank">
+    <!-- Google Maps -->
+    <a class="link-btn" href="https://maps.app.goo.gl/zTe119CUKGirQGHk8" target="_blank">
         <img class="small-icon" src="https://upload.wikimedia.org/wikipedia/commons/8/88/Map_marker.svg">
         Ver no Google Maps
     </a>
