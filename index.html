@@ -13,7 +13,6 @@ body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(180deg, #006da4, #0080c8);
-    padding: 0;
     display: flex;
     justify-content: center;
 }
@@ -21,7 +20,7 @@ body {
 .container {
     width: 100%;
     max-width: 480px;
-    padding: 25px 15px;
+    padding: 25px 15px 40px;
     text-align: center;
     color: white;
 }
@@ -63,39 +62,18 @@ body {
     opacity: 0.7;
 }
 
-/* CARD GRANDE */
-.big-card {
-    background: white;
-    border-radius: 14px;
-    overflow: hidden;
-    margin-bottom: 18px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
-}
-
-.big-card img {
-    width: 100%;
-    display: block;
-}
-
-.big-card .label {
-    padding: 14px;
-    text-align: center;
-    color: #000;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-/* BOTÕES SIMPLES */
+/* BOTÕES */
 .link-btn {
     width: 100%;
     background: white;
     color: black;
     padding: 16px;
     border-radius: 12px;
-    font-size: 16px;
+    font-size: 17px;
     margin-bottom: 14px;
     text-decoration: none;
-    display: block;
+    display: flex;
+    align-items: center;
     font-weight: 500;
     box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     transition: 0.2s;
@@ -105,14 +83,13 @@ body {
     transform: scale(1.02);
 }
 
-/* Ícone pequeno nos botões (para quando quiser usar) */
+/* Ícones pequenos */
 .small-icon {
     width: 26px;
     height: 26px;
-    margin-right: 10px;
-    vertical-align: middle;
     border-radius: 50%;
     object-fit: cover;
+    margin-right: 12px;
 }
 </style>
 </head>
@@ -135,23 +112,31 @@ body {
         <a href="https://www.facebook.com/jqcvidros" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
 
-    <!-- CARD GRANDE WHATSAPP -->
-    <a href="https://wa.me/5575981358280" target="_blank">
-        <div class="big-card">
-            <img src="https://ugc.production.linktr.ee/e62eabff-6eb5-4781-8d3d-d0f0b3b0c103_J5gK5AgJ-L5.png?io=true&size=thumbnail-feature-v1_0">
-            <div class="label">WhatsApp</div>
-        </div>
+    <!-- BOTÕES COM ÍCONES PEQUENOS -->
+    
+    <!-- WhatsApp -->
+    <a class="link-btn" href="https://wa.me/5575981358280" target="_blank">
+        <img class="small-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+        WhatsApp
     </a>
 
-    <!-- Botões -->
-    <a class="link-btn" href="https://www.instagram.com/jqcvidros" target="_blank">Instagram</a>
+    <!-- Instagram -->
+    <a class="link-btn" href="https://www.instagram.com/jqcvidros" target="_blank">
+        <img class="small-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg">
+        Instagram
+    </a>
 
+    <!-- YouTube -->
     <a class="link-btn" href="https://www.youtube.com/@jqcvidros" target="_blank">
-        <img class="small-icon" src="https://ugc.production.linktr.ee/d89d10e9-b14b-4bbe-866e-bd9419641708_AIdro-klcE4Vac-sTmucC3ioIFBI2Bv0QHUtsYy45fRWhsCjQAE-s800-c-k-c0x00ffffff-no-rj.jpeg?io=true&size=avatar-v3_0">
+        <img class="small-icon" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg">
         YouTube
     </a>
 
-    <a class="link-btn" href="https://www.facebook.com/jqcvidros" target="_blank">Facebook</a>
+    <!-- Facebook -->
+    <a class="link-btn" href="https://www.facebook.com/jqcvidros" target="_blank">
+        <img class="small-icon" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg">
+        Facebook
+    </a>
 
 </div>
 
