@@ -1,18 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>JQC Vidros - Links</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { font-family: sans-serif; text-align: center; background-color: #f0f0f0; padding-top: 50px; }
-        .link { display: block; width: 80%; max-width: 400px; margin: 20px auto; padding: 15px; background-color: #ffffff; border: 1px solid #ccc; border-radius: 8px; text-decoration: none; color: #333; font-weight: bold; transition: background-color 0.3s; }
-        .link:hover { background-color: #e0e0e0; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JQC Vidros</title>
+
+<!-- Ícones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg, #006da4, #0080c8);
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 25px 15px;
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 20px;
+    border: 4px solid rgba(255,255,255,0.4);
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+.social-icons {
+    margin: 18px 0 25px 0;
+}
+
+.social-icons a {
+    color: white;
+    margin: 0 8px;
+    font-size: 22px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.social-icons a:hover {
+    opacity: 0.7;
+}
+
+/* CARD GRANDE */
+.big-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+
+.big-card img {
+    width: 100%;
+    display: block;
+}
+
+.big-card .label {
+    padding: 14px;
+    text-align: center;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* BOTÕES SIMPLES */
+.link-btn {
+    width: 100%;
+    background: white;
+    color: black;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 14px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    transition: 0.2s;
+}
+
+.link-btn:hover {
+    transform: scale(1.02);
+}
+
+/* Ícone pequeno nos botões (para quando quiser usar) */
+.small-icon {
+    width: 26px;
+    height: 26px;
+    margin-right: 10px;
+    vertical-align: middle;
+    border-radius: 50%;
+    object-fit: cover;
+}
+</style>
 </head>
+
 <body>
-    <h1>👋 Olá, sou [Seu Nome]</h1>
-    <a href="https://www.instagram.com/jqcvidros" class="link">📷 Instagram</a>
-    <a href="https://www.youtube.com/@jqcvidros" class="link">🎶 YouTube</a>
-    
+
+<div class="container">
+
+    <!-- Logo -->
+    <img class="logo" src="https://ugc.production.linktr.ee/d89d10e9-b14b-4bbe-866e-bd9419641708_AIdro-klcE4Vac-sTmucC3ioIFBI2Bv0QHUtsYy45fRWhsCjQAE-s800-c-k-c0x00ffffff-no-rj.jpeg?io=true&size=avatar-v3_0">
+
+    <div class="title">JQC Vidros</div>
+    <div class="subtitle">Vidros Temperados</div>
+
+    <!-- Ícones sociais -->
+    <div class="social-icons">
+        <a href="https://www.instagram.com/jqcvidros" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5575981358280" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.youtube.com/@jqcvidros" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/jqcvidros" target="_blank"><i class="fab fa-facebook"></i></a>
+    </div>
+
+    <!-- CARD GRANDE WHATSAPP -->
+    <a href="https://wa.me/5575981358280" target="_blank">
+        <div class="big-card">
+            <img src="https://ugc.production.linktr.ee/e62eabff-6eb5-4781-8d3d-d0f0b3b0c103_J5gK5AgJ-L5.png?io=true&size=thumbnail-feature-v1_0">
+            <div class="label">WhatsApp</div>
+        </div>
+    </a>
+
+    <!-- Botões -->
+    <a class="link-btn" href="https://www.instagram.com/jqcvidros" target="_blank">Instagram</a>
+
+    <a class="link-btn" href="https://www.youtube.com/@jqcvidros" target="_blank">
+        <img class="small-icon" src="https://ugc.production.linktr.ee/d89d10e9-b14b-4bbe-866e-bd9419641708_AIdro-klcE4Vac-sTmucC3ioIFBI2Bv0QHUtsYy45fRWhsCjQAE-s800-c-k-c0x00ffffff-no-rj.jpeg?io=true&size=avatar-v3_0">
+        YouTube
+    </a>
+
+    <a class="link-btn" href="https://www.facebook.com/jqcvidros" target="_blank">Facebook</a>
+
+</div>
+
 </body>
 </html>
