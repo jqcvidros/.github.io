@@ -34,8 +34,19 @@
 
   /* Dark mode class */
   :root.dark {
-    background: #000;
-  }
+        body {
+            background: #000;
+        }
+
+        .link-btn {
+            background: rgba(255,255,255,0.10) !important;
+            box-shadow: 0 4px 14px rgba(255,255,255,0.18) !important;
+        }
+
+        .link-btn:hover {
+            background: rgba(255,255,255,0.20) !important;
+        }
+    }
 
   /* Cabeçalho fixo simples (Opção A) */
   header.topbar {
