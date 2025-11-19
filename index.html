@@ -1,205 +1,366 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>JQC Vidros</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>JQC VIDROS</title>
+
+<!-- Favicon / Profile image (usuário enviou arquivo local; caminho usado abaixo) -->
+<link rel="icon" type="image/png" href="/mnt/data/área da tela.png">
+
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        transition: 0.3s;
-    }
+  /* Reset e box-sizing */
+  *, *::before, *::after { box-sizing: border-box; }
 
-    :root {
-        --bg: #e7ecf7;
-        --card: rgba(255,255,255,0.55);
-        --text: #1a1a1a;
-        --glass-border: rgba(255,255,255,0.4);
-    }
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(130deg,#0b70a8,#00649c,#0080c0);
+    background-size: 300% 300%;
+    animation: gradientMove 14s ease infinite;
+    color: #fff;
+    transition: background .35s ease, color .35s ease;
+    overflow-x: hidden;
+  }
 
-    body.dark {
-        --bg: #0e0e0e;
-        --card: rgba(30,30,30,0.6);
-        --text: #f1f1f1;
-        --glass-border: rgba(255,255,255,0.1);
-    }
+  @keyframes gradientMove {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
 
-    /* MENU FIXO */
-    .menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        backdrop-filter: blur(10px);
-        background: var(--card);
-        padding: 12px 0;
-        border-bottom: 1px solid var(--glass-border);
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        z-index: 999;
-    }
+  /* Dark mode class */
+  :root.dark {
+    background: #000;
+  }
 
-    /* BOTÃO DE TEMA */
-    .theme-toggle {
-        position: absolute;
-        right: 15px;
-        top: 10px;
-        cursor: pointer;
-        font-size: 22px;
-    }
+  /* Cabeçalho fixo simples (Opção A) */
+  header.topbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* título central */
+    z-index: 40;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
 
-    .container {
-        max-width: 600px;
-        margin: 110px auto 50px; /* desce por causa do menu */
-        padding: 10px;
-    }
+  :root.dark header.topbar {
+    background: rgba(255,255,255,0.02);
+    border-bottom-color: rgba(255,255,255,0.03);
+  }
 
-    .card {
-        background: var(--card);
-        padding: 18px;
-        margin-bottom: 22px;
-        border-radius: 16px;
-        border: 1px solid var(--glass-border);
-        backdrop-filter: blur(12px);
-    }
+  .topbar .title {
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
 
-    .card h2 {
-        margin: 0 0 6px;
-        font-size: 22px;
-        font-weight: bold;
-    }
+  /* Toggle botão no canto direito do header */
+  .topbar .controls {
+    position: absolute;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-    .card p {
-        margin: 0 0 12px;
-        font-size: 14px;
-        opacity: 0.9;
-    }
+  .theme-toggle {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+  }
+  .theme-toggle:focus { outline: 2px solid rgba(255,255,255,0.18); }
 
-    .btn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--card);
-        border: 1px solid var(--glass-border);
-        padding: 14px;
-        border-radius: 12px;
-        margin-top: 10px;
-        text-decoration: none;
-        color: var(--text);
-        font-size: 17px;
-        font-weight: bold;
-        backdrop-filter: blur(10px);
-    }
+  /* Container principal (considera o header) */
+  main {
+    padding: 92px 16px 48px; /* topo = header height + espaço */
+    max-width: 520px;
+    margin: 0 auto;
+  }
 
-    .btn:hover {
-        transform: scale(1.02);
-        transition: 0.2s;
-    }
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
 
-    .icon {
-        width: 26px;
-        height: 26px;
-    }
+  .profile img.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.55);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+    background: #fff;
+  }
+
+  h1.site-name {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  p.tagline {
+    margin: 0;
+    opacity: 0.95;
+    font-size: 14px;
+  }
+
+  /* Card / seção de filial */
+  .branch {
+    margin: 18px 0;
+    text-align: left;
+  }
+
+  .branch .branch-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .branch .branch-address {
+    font-size: 13px;
+    opacity: 0.95;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* Botões glass */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    padding: 12px 10px;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    transition: transform .15s ease, background .18s ease;
+  }
+
+  .btn img.icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.28);
+  }
+
+  /* Socials fixed width button (full width under socials) */
+  .full-row {
+    margin-top: 8px;
+    display: grid;
+    gap: 10px;
+  }
+
+  /* Footer small notes */
+  .small-note {
+    margin-top: 18px;
+    font-size: 12px;
+    opacity: 0.9;
+    text-align:center;
+  }
+
+  /* Dark adjustments */
+  :root.dark .btn {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(255,255,255,0.02);
+  }
+
+  /* Responsividade */
+  @media (max-width: 420px) {
+    .actions { grid-template-columns: 1fr 1fr; }
+    .profile img.avatar { width: 110px; height: 110px; }
+    main { padding: 82px 12px 36px; }
+  }
+
+  @media (max-width: 360px) {
+    .actions { grid-template-columns: 1fr; }
+  }
 
 </style>
 </head>
 <body>
 
-<!-- MENU FIXO -->
-<div class="menu">
-    JQC VIDROS
-    <span class="theme-toggle" onclick="toggleTheme()">🌙</span>
-</div>
+  <!-- HEADER FIXO SIMPLES (Opção A) -->
+  <header class="topbar" role="banner" aria-label="Menu superior">
+    <div class="title">JQC VIDROS</div>
 
-<div class="container">
-
-    <!-- FILIAL 1 -->
-    <div class="card">
-        <h2>JQC Queimadinha</h2>
-        <p>Rua Carlos Valadares, 340 - Centro, Feira de Santana - BA, 44050-006</p>
-
-        <a class="btn" href="https://wa.me/5575991454807" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-            WhatsApp
-        </a>
-
-        <a class="btn" href="https://maps.app.goo.gl/Fok9JMh1K7SykaMv5" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/535/535239.png">
-            Google Maps
-        </a>
+    <div class="controls">
+      <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+        <span id="themeIcon">🌙</span>
+      </button>
     </div>
+  </header>
 
-    <!-- FILIAL 2 -->
-    <div class="card">
-        <h2>JQC São João</h2>
-        <p>Rua Profa. Edelvira de Oliveira, 807 - São João, Feira de Santana - BA, 44051-754</p>
+  <main>
+    <!-- Perfil -->
+    <section class="profile" aria-label="Perfil">
+      <!-- Usando o arquivo enviado localmente (caminho fornecido) -->
+      <img class="avatar" src="/mnt/data/área da tela.png" alt="JQC Vidros - logo / foto">
+      <h1 class="site-name">JQC Vidros</h1>
+      <p class="tagline">Vidros Temperados — Filiais em Feira de Santana</p>
+    </section>
 
-        <a class="btn" href="https://wa.me/5575991713989" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-            WhatsApp
+    <!-- FILIAL 1: JQC Queimadinha -->
+    <section class="branch" id="branch-1" aria-labelledby="b1-title">
+      <div class="branch-title" id="b1-title">JQC Queimadinha</div>
+      <div class="branch-address">Rua Carlos Valadares, 340 - Centro, Feira de Santana - BA, 44050-006</div>
+
+      <div class="actions" role="group" aria-label="Ações Queimadinha">
+        <a class="btn" href="https://wa.me/5575991454807" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          WhatsApp
         </a>
 
-        <a class="btn" href="https://maps.app.goo.gl/A2w1pVDTa7kSKpnT8" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/535/535239.png">
-            Google Maps
+        <a class="btn" href="https://maps.app.goo.gl/Fok9JMh1K7SykaMv5" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/8/88/Map_marker.svg" alt="Mapas">
+          Localização
         </a>
-    </div>
+      </div>
+    </section>
 
-    <!-- FILIAL 3 (MATRIZ) -->
-    <div class="card">
-        <h2>JQC Vidros (Matriz)</h2>
-        <p>Rua Rubens Francisco Dias, 250 - Parque Ipê, Feira de Santana - BA, 44055-002</p>
+    <!-- FILIAL 2: JQC São João -->
+    <section class="branch" id="branch-2" aria-labelledby="b2-title">
+      <div class="branch-title" id="b2-title">JQC São João</div>
+      <div class="branch-address">Rua Profa. Edelvira de Oliveira, 807 - São JOÃO, Feira de Santana - BA, 44051-754</div>
 
-        <a class="btn" href="https://wa.me/5575981358280" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-            WhatsApp
-        </a>
-
-        <a class="btn" href="https://maps.app.goo.gl/TU3CMJdVUrgx31gj8" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/535/535239.png">
-            Google Maps
-        </a>
-    </div>
-
-    <!-- REDES SOCIAIS (COMPARTILHADAS) -->
-    <div class="card">
-        <h2>Redes Sociais</h2>
-
-        <a class="btn" href="https://www.instagram.com/jqcvidros" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
-            Instagram
+      <div class="actions" role="group" aria-label="Ações São João">
+        <a class="btn" href="https://wa.me/5575991713989" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          WhatsApp
         </a>
 
-        <a class="btn" href="https://www.facebook.com/jqcvidros" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
-            Facebook
+        <a class="btn" href="https://maps.app.goo.gl/A2w1pVDTa7kSKpnT8" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/8/88/Map_marker.svg" alt="Mapas">
+          Localização
+        </a>
+      </div>
+    </section>
+
+    <!-- FILIAL 3: JQC Vidros (Matriz) -->
+    <section class="branch" id="branch-3" aria-labelledby="b3-title">
+      <div class="branch-title" id="b3-title">JQC Vidros (Matriz)</div>
+      <div class="branch-address">Rua Rubens Francisco Dias, 250 - Parque Ipe, Feira de Santana - BA, 44055-002</div>
+
+      <div class="actions" role="group" aria-label="Ações Matriz">
+        <a class="btn" href="https://wa.me/5575981358280" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+          WhatsApp
         </a>
 
-        <a class="btn" href="https://www.youtube.com/@jqcvidros" target="_blank">
-            <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
-            YouTube
+        <a class="btn" href="https://maps.app.goo.gl/TU3CMJdVUrgx31gj8" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/8/88/Map_marker.svg" alt="Mapas">
+          Localização
         </a>
-    </div>
+      </div>
+    </section>
 
-</div>
+    <!-- Redes Sociais (comportamento centralizado) -->
+    <section class="branch" aria-labelledby="socials-title">
+      <div class="branch-title" id="socials-title">Redes Sociais</div>
+
+      <div class="full-row">
+        <a class="btn" href="https://www.instagram.com/jqcvidros" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">Instagram
+        </a>
+
+        <a class="btn" href="https://www.facebook.com/jqcvidros" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook">Facebook
+        </a>
+
+        <a class="btn" href="https://www.youtube.com/@jqcvidros" target="_blank" rel="noopener noreferrer">
+          <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">YouTube
+        </a>
+      </div>
+    </section>
+
+    <div class="small-note">Toque nos botões para abrir o WhatsApp ou o Google Maps. Tema lembrado no seu navegador.</div>
+  </main>
 
 <script>
-    // Carrega tema salvo
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark");
-        document.querySelector(".theme-toggle").textContent = "☀️";
+  // Theme toggle manual com memória (localStorage)
+  (function() {
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const storageKey = 'jqc_theme';
+
+    // Aplica o tema salvo
+    function applyTheme(t) {
+      if (t === 'dark') {
+        root.classList.add('dark');
+        themeIcon.textContent = '☀️';
+      } else {
+        root.classList.remove('dark');
+        themeIcon.textContent = '🌙';
+      }
     }
 
-    function toggleTheme() {
-        document.body.classList.toggle("dark");
-        const isDark = document.body.classList.contains("dark");
-        localStorage.setItem("theme", isDark ? "dark" : "light");
-        document.querySelector(".theme-toggle").textContent = isDark ? "☀️" : "🌙";
+    // Inicialização: checa localStorage -> prefereência do sistema -> padrão 'light'
+    const saved = localStorage.getItem(storageKey);
+    if (saved) {
+      applyTheme(saved);
+    } else {
+      // Usa preferencia do sistema como padrão
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'dark' : 'light');
     }
+
+    // Toggle
+    themeToggle.addEventListener('click', function () {
+      const isDark = document.documentElement.classList.contains('dark');
+      const next = isDark ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem(storageKey, next);
+    });
+
+    // Atualiza se usuário alterar preferencia do sistema (se não houver escolha salva)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (!localStorage.getItem(storageKey)) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  })();
 </script>
 
 </body>
