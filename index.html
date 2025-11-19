@@ -9,229 +9,213 @@
 <link rel="icon" type="image/png" href="LOGO JQC 1.PNG">
 
 <style>
-  /* Reset e box-sizing */
-  *, *::before, *::after { box-sizing: border-box; }
+  /* Reset e box-sizing */
+  *, *::before, *::after { box-sizing: border-box; }
 
-  html, body {
-    height: 100%;
-    margin: 0;
-    font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* Fundo padrão claro (gradiente) */
-    background: linear-gradient(130deg,#0b70a8,#00649c,#0080c0);
-    background-size: 300% 300%;
-    animation: gradientMove 14s ease infinite;
-    color: #fff;
-    transition: background .35s ease, color .35s ease;
-    overflow-x: hidden;
-  }
-
-  @keyframes gradientMove {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
-
-  /* AQUI ESTÁ A CORREÇÃO PRINCIPAL */
-  :root.dark, :root.dark body {
-    background: #000 !important; /* Fundo preto sólido no modo escuro */
-    color: #fff; /* Mantém o texto branco */
-    animation: none; /* Remove a animação no modo escuro */
-  }
-
-  /* Cabeçalho fixo simples (Opção A) */
-  header.topbar {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* título central */
-    z-index: 40;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background: rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: background .35s ease, border-bottom-color .35s ease; /* Adiciona transição para o header */
-  }
-
-  :root.dark header.topbar {
-    background: rgba(255,255,255,0.02);
-    border-bottom-color: rgba(255,255,255,0.03);
-  }
-    
-  .topbar .title {
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: 18px;
-    text-transform: uppercase;
-  }
-
-  /* Toggle botão no canto direito do header */
-  .topbar .controls {
-    position: absolute;
-    right: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .theme-toggle {
-    background: transparent;
-    border: 0;
-    color: inherit;
-    font-size: 18px;
-    padding: 6px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-  }
-  .theme-toggle:focus { outline: 2px solid rgba(255,255,255,0.18); }
-
-  /* Container principal (considera o header) */
-  main {
-    padding: 92px 16px 48px; /* topo = header height + espaço */
-    max-width: 520px;
-    margin: 0 auto;
-  }
-
-  .profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
-  }
-
-  .profile img.avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid rgba(255,255,255,0.55);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.28);
-    background: #fff;
-    transition: border-color .35s ease, box-shadow .35s ease; /* Adiciona transição */
-  }
-    
-  :root.dark .profile img.avatar {
-    border-color: rgba(255,255,255,0.25);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.68);
-    background: #111;
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(130deg,#0b70a8,#00649c,#0080c0);
+    background-size: 300% 300%;
+    animation: gradientMove 14s ease infinite;
+    color: #fff;
+    transition: background .35s ease, color .35s ease;
+    overflow-x: hidden;
   }
 
-  h1.site-name {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 700;
-    text-align: center;
-  }
+  @keyframes gradientMove {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
 
-  p.tagline {
-    margin: 0;
-    opacity: 0.95;
-    font-size: 14px;
-  }
+  /* Dark mode class */
+  :root.dark {
+    background: #000;
+  }
 
-  /* Card / seção de filial */
-  .branch {
-    margin: 18px 0;
-    text-align: left;
-  }
+  /* Cabeçalho fixo simples (Opção A) */
+  header.topbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* título central */
+    z-index: 40;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
 
-  .branch .branch-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
+  :root.dark header.topbar {
+    background: rgba(255,255,255,0.02);
+    border-bottom-color: rgba(255,255,255,0.03);
+  }
 
-  .branch .branch-address {
-    font-size: 13px;
-    opacity: 0.95;
-    margin-bottom: 10px;
-    line-height: 1.25;
-  }
+  .topbar .title {
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
 
-  .actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
+  /* Toggle botão no canto direito do header */
+  .topbar .controls {
+    position: absolute;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-  /* Botões glass */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: center;
-    padding: 12px 10px;
-    background: rgba(255,255,255,0.18);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 14px;
-    border: 1px solid rgba(255,255,255,0.12);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-    transition: transform .15s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
-  }
+  .theme-toggle {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+  }
+  .theme-toggle:focus { outline: 2px solid rgba(255,255,255,0.18); }
 
-  .btn img.icon {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-  }
+  /* Container principal (considera o header) */
+  main {
+    padding: 92px 16px 48px; /* topo = header height + espaço */
+    max-width: 520px;
+    margin: 0 auto;
+  }
 
-  .btn:hover {
-    transform: translateY(-3px);
-    background: rgba(255,255,255,0.28);
-  }
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
 
-  /* Socials fixed width button (full width under socials) */
-  .full-row {
-    margin-top: 8px;
-    display: grid;
-    gap: 10px;
-  }
+  .profile img.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255,255,255,0.55);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.28);
+    background: #fff;
+  }
 
-  /* Footer small notes */
-  .small-note {
-    margin-top: 18px;
-    font-size: 12px;
-    opacity: 0.9;
-    text-align:center;
-  }
+  h1.site-name {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+  }
 
-  /* Dark adjustments */
-  :root.dark .btn {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.06);
-    box-shadow: 0 6px 18px rgba(255,255,255,0.02);
-  }
+  p.tagline {
+    margin: 0;
+    opacity: 0.95;
+    font-size: 14px;
+  }
 
-  :root.dark .btn:hover {
-    background: rgba(255,255,255,0.12); /* Mais visível ao passar o mouse no modo escuro */
-  }
+  /* Card / seção de filial */
+  .branch {
+    margin: 18px 0;
+    text-align: left;
+  }
 
+  .branch .branch-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
 
-  /* Responsividade */
-  @media (max-width: 420px) {
-    .actions { grid-template-columns: 1fr 1fr; }
-    .profile img.avatar { width: 110px; height: 110px; }
-    main { padding: 82px 12px 36px; }
-  }
+  .branch .branch-address {
+    font-size: 13px;
+    opacity: 0.95;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
 
-  @media (max-width: 360px) {
-    .actions { grid-template-columns: 1fr; }
-  }
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* Botões glass */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    padding: 12px 10px;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    transition: transform .15s ease, background .18s ease;
+  }
+
+  .btn img.icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.28);
+  }
+
+  /* Socials fixed width button (full width under socials) */
+  .full-row {
+    margin-top: 8px;
+    display: grid;
+    gap: 10px;
+  }
+
+  /* Footer small notes */
+  .small-note {
+    margin-top: 18px;
+    font-size: 12px;
+    opacity: 0.9;
+    text-align:center;
+  }
+
+  /* Dark adjustments */
+  :root.dark .btn {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(255,255,255,0.02);
+  }
+
+  /* Responsividade */
+  @media (max-width: 420px) {
+    .actions { grid-template-columns: 1fr 1fr; }
+    .profile img.avatar { width: 110px; height: 110px; }
+    main { padding: 82px 12px 36px; }
+  }
+
+  @media (max-width: 360px) {
+    .actions { grid-template-columns: 1fr; }
+  }
 
 </style>
 </head>
