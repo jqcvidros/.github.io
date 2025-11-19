@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -194,6 +195,24 @@
     transform: translateY(-3px);
     background: rgba(255,255,255,0.28);
   }
+  
+  .social-row {
+        margin: 20px 0 30px;
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+
+    .social-row img {
+        width: 32px;
+        height: 32px;
+        transition: 0.2s;
+    }
+
+    .social-row img:hover {
+        transform: scale(1.18);
+    }
 
   /* Socials fixed width button (full width under socials) */
   .full-row {
@@ -251,7 +270,17 @@
       <h1 class="site-name">JQC Vidros</h1>
       <p class="tagline">Vidros Temperados</p>
     </section>
+	<div class="social-row">
+        <a href="https://www.instagram.com/jqcvidros" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
+        <a href="https://wa.me/5575981358280" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
 
+        <!-- YouTube antigo restaurado -->
+        <a href="https://www.youtube.com/@jqcvidros" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png">
+        </a>
+
+        <a href="https://www.facebook.com/jqcvidros" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"></a>
+    </div>
     <!-- FILIAL 1: JQC Queimadinha -->
     <section class="branch" id="branch-1" aria-labelledby="b1-title">
       <div class="branch-title" id="b1-title">JQC Queimadinha</div>
